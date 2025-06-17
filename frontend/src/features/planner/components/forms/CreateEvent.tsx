@@ -21,8 +21,13 @@ interface CreateEventProps {
     children?: React.ReactNode;
 }
 
+async function setInvitedEmails(email: string): string[] => {
+    // TODO: Implement this.
+}
+
 export const CreateEvent: React.FC<CreateEventProps> = ({ children }) => {
     const [dateTime, setDateTime] = useState(new Date());
+
 
     return (
         <Container>
@@ -49,7 +54,7 @@ export const CreateEvent: React.FC<CreateEventProps> = ({ children }) => {
                         />
 
                         <div className="flex flex-col space-y-2">
-                            <EmailInviteInput />
+                            <EmailInviteInput label={"Invite Attendees"} onChange={(emails => setInvitedEmails(emails))}/>
                         </div>
 
                         <div className="flex flex-col space-y-2" >
