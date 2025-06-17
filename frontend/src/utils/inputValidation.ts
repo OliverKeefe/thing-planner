@@ -11,5 +11,5 @@ export function isValidMinuteOrSecond(value: string): boolean {
 }
 
 export function isValidEmail(email: string): boolean {
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
