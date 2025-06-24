@@ -1,9 +1,9 @@
-package com.thingplanner.backend.dto;
+package com.thingplanner.backend.dto.request;
 
-public class EventDTO {
+public class EventRequest {
     private Long eventId;
     private String eventName;
-    private int eventType;
+    private Integer eventType;
 
     public Long getEventId() {
         return eventId;
@@ -13,11 +13,11 @@ public class EventDTO {
         this.eventId = eventId;
     }
 
-    public int getEventType() {
+    public Integer getEventType() {
         return eventType;
     }
 
-    public void setEventType(int eventType) {
+    public void setEventType(Integer eventType) {
         this.eventType = eventType;
     }
 
