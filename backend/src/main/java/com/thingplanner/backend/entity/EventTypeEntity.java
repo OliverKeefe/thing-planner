@@ -8,12 +8,12 @@ public class EventTypeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "event_type_name")
     private String eventTypeName;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
