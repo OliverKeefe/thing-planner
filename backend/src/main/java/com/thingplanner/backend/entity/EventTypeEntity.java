@@ -3,7 +3,7 @@ package com.thingplanner.backend.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "event_type")
+@Table(name = "event_types")
 public class EventTypeEntity {
 
     @Id
