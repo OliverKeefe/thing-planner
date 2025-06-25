@@ -1,9 +1,14 @@
 package com.thingplanner.backend.dto.request;
 
+import java.util.List;
+
 public class EventRequest {
     private Long eventId;
     private String eventName;
     private Integer eventType;
+    private String startDate;
+    private String endDate;
+   // private List<String> attendeeEmails;
 
     public Long getEventId() {
         return eventId;
@@ -11,6 +16,14 @@ public class EventRequest {
 
     public void setEventId(Long eventId) {
         this.eventId = eventId;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public Integer getEventType() {
@@ -21,11 +34,27 @@ public class EventRequest {
         this.eventType = eventType;
     }
 
-    public String getEventName() {
-        return eventName;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    //public List<String> getAttendeeEmails() {
+    //    return attendeeEmails;
+    //}
+//
+    //public void setAttendeeEmails(List<String> attendeeEmails) {
+    //    this.attendeeEmails = attendeeEmails;
+    //}
 }
