@@ -1,22 +1,38 @@
 package com.thingplanner.backend.mapper;
 
 import com.thingplanner.backend.dto.request.EventRequest;
+import com.thingplanner.backend.dto.response.EventResponse;
 import com.thingplanner.backend.entity.EventEntity;
 import com.thingplanner.backend.entity.EventTypeEntity;
-import com.thingplanner.backend.dto.response.EventResponse;
-import org.mapstruct.*;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface EventMapper {
+@Component
+public class EventMapper {
 
-    @Mapping(target = "eventType", source = "eventType")
-    EventEntity toEntity(EventRequest dto, @Context EventTypeEntity eventType);
+    private final EventTypeMapper eventTypeMapper;
 
-    @Mapping(target = "eventTypeName", source = "eventType.eventTypeName")
-    EventResponse toResponse(EventEntity entity);
+    public EventMapper(EventTypeMapper eventTypeMapper) {
+        this.eventTypeMapper = eventTypeMapper;
+    }
 
-    @AfterMapping
-    default void setEventType(@MappingTarget EventEntity entity, @Context EventTypeEntity eventType) {
+    public EventEntity toEntity(EventRequest request, EventTypeEntity eventType) {
+        EventEntity entity = new EventEntity();
+        entity.setEventName(request.getEventName());
+        //entity.setDescription(dto.getDescription());
+        entity.setStartDate(request.getStartDate());
+        entity.setEndDate(request.getEndDate());
         entity.setEventType(eventType);
+        return entity;
+    }
+
+    public EventResponse toResponse(EventEntity entity) {
+        EventResponse response = new EventResponse();
+        response.setEventId(entity.getId());
+        response.setEventName(entity.getEventName());
+        //response.setDescription(entity.getDescription());
+        response.setStartDate(entity.getStartDate());
+        response.setEndDate(entity.getEndDate());
+        response.setEventType(eventTypeMapper.toResponse(entity.getEventType()));
+        return response;
     }
 }
