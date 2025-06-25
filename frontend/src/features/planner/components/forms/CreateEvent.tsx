@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -14,20 +13,20 @@ import {
 } from "@/components/ui/card"
 import EventTypeSelector from "@/features/planner/components/checkboxes/EventTypeSelector";
 import { DateTimePicker } from "@/components/shared/datetime/calendars/DateTimePicker.tsx";
-import {EmailInviteInput} from "@/components/shared/Input/EmailInviteInput.tsx";
+import { EmailInviteInput } from "@/components/shared/Input/EmailInviteInput.tsx";
 
 
 interface CreateEventProps {
     children?: React.ReactNode;
 }
 
-async function setInvitedEmails(email: string): string[] => {
-    // TODO: Implement this.
-}
-
 export const CreateEvent: React.FC<CreateEventProps> = ({ children }) => {
     const [dateTime, setDateTime] = useState(new Date());
-
+    const [invitedEmails, setInvitedEmails] = useState<string[]>([]);
+    const [eventName, setEventName] = useState("");
+    const [eventType, setEventType] = useState("");
+    const [startTime, setStartTime] = useState("");
+    const [endTime, setEndTime] = useState("");
 
     return (
         <Container>
@@ -62,8 +61,6 @@ export const CreateEvent: React.FC<CreateEventProps> = ({ children }) => {
                         </div>
                     </div>
                 </CardContent>
-
-
 
                 <CardFooter>
                     <p className={"text-sm text-muted-foreground"}>
