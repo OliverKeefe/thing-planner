@@ -1,6 +1,7 @@
-CREATE DATABASE event_planner;
-
-USE event_plannner;
+CREATE TABLE IF NOT EXISTS event_types (
+    id INT PRIMARY KEY,
+    event_type_name VARCHAR(16)
+);
 
 CREATE TABLE IF NOT EXISTS events (
     id INT PRIMARY KEY NOT NULL,
@@ -9,12 +10,5 @@ CREATE TABLE IF NOT EXISTS events (
     start_date VARCHAR(29) NOT NULL,
     end_date VARCHAR(29),
     attendee_emails VARCHAR(64),
-
-    FOREIGN KEY (event_type) REFERENCES event_type(id)
+    FOREIGN KEY (event_type) REFERENCES event_types(id)
 );
-
-CREATE TABLE IF NOT EXISTS event_types (
-    id INT PRIMARY KEY,
-    event_type_name VARCHAR(16)
-);
-
