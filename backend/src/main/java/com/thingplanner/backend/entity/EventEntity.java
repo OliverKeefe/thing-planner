@@ -25,8 +25,10 @@ public class EventEntity {
     @Column(name = "end_date")
     private String endDate;
 
-    @Column(name = "attendee_emails")
-    private List<String> attendeeEmails;
+    //@ElementCollection
+    //@CollectionTable(name = "event_attendees", joinColumns = @JoinColumn(name = "event_id"))
+    //@Column(name = "attendee_emails")
+    //private List<String> attendeeEmails;
 
     public Long getId() {
         return id;
@@ -64,11 +66,11 @@ public class EventEntity {
         this.endDate = endDate;
     }
 
-    public List<String> getAttendeeEmails() {
-        return attendeeEmails;
-    }
-
-    public void setAttendeeEmails(List<String> attendeeEmails) {
-        this.attendeeEmails = attendeeEmails;
-    }
+    //public List<String> getAttendeeEmails() {
+    //    return attendeeEmails;
+    //}
+//
+    //public void setAttendeeEmails(List<String> attendeeEmails) {
+    //    this.attendeeEmails = attendeeEmails;
+    //}
 }
