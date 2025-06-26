@@ -6,7 +6,7 @@ import com.thingplanner.backend.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/event")
 public class EventController {
 
     private final EventService eventService;
@@ -15,9 +15,16 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @PostMapping("/event")
+    @PostMapping("/create")
+    public EventResponse createEvent(@RequestBody EventRequest request) {
+        return (EventResponse) eventService.create(request);
+    }
+
+    @PostMapping("/get")
     public EventResponse getEvent(@RequestBody EventRequest request) {
         return (EventResponse) eventService.findByFields(request);
     }
+
+
 
 }
