@@ -1,14 +1,14 @@
 package com.thingplanner.backend.dto.response;
 
 public class EventTypeResponse {
-    private Integer id;
+    private Long id;
     private String eventTypeName;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -18,8 +18,5 @@ public class EventTypeResponse {
 
     public void setEventTypeName(String eventTypeName) {
         this.eventTypeName = eventTypeName;
-    }
-
-    public void setEventTypeId(Integer id) {
     }
 }
