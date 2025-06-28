@@ -19,8 +19,8 @@ public class EventSpecifications {
                 predicates.add(criteriaBuilder.equal(root.get("eventName"), request.getEventName()));
             }
 
-            if (request.getEventType() != null && !request.getEventName().isBlank()) {
-                predicates.add(criteriaBuilder.equal(root.get("eventType"), request.getEventType()));
+            if (request.getEventType() != null && request.getEventType().getId() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("eventType").get("id"), request.getEventType().getId()));
             }
 
             if (request.getStartDate() != null && !request.getStartDate().isBlank()) {
