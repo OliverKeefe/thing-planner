@@ -5,7 +5,7 @@ import java.util.List;
 public class EventRequest {
     private Long eventId;
     private String eventName;
-    private Integer eventType;
+    private EventTypeRequest eventType;
     private String startDate;
     private String endDate;
    // private List<String> attendeeEmails;
@@ -26,11 +26,11 @@ public class EventRequest {
         this.eventName = eventName;
     }
 
-    public Integer getEventType() {
+    public EventTypeRequest getEventType() {
         return eventType;
     }
 
-    public void setEventType(Integer eventType) {
+    public void setEventType(EventTypeRequest eventType) {
         this.eventType = eventType;
     }
 
