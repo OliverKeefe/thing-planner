@@ -1,12 +1,12 @@
 CREATE TABLE IF NOT EXISTS event_types (
-    id INT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     event_type_name VARCHAR(16)
 );
 
 CREATE TABLE IF NOT EXISTS events (
-    id INT PRIMARY KEY NOT NULL,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     event_name VARCHAR(128) NOT NULL,
-    event_type INT NOT NULL,
+    event_type BIGINT NOT NULL,
     start_date VARCHAR(29) NOT NULL,
     end_date VARCHAR(29),
     attendee_emails VARCHAR(64),
