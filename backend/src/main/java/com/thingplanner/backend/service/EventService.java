@@ -26,7 +26,7 @@ public class EventService {
     }
 
     public EventResponse create(EventRequest request) {
-        if (findByFields(request) == null) {
+        if (findByFields(request).isEmpty()) {
             try {
                 EventEntity eventEntity = eventMapper.toEntity(request);
                 eventRepository.save(eventEntity);
