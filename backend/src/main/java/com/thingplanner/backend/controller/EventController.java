@@ -5,6 +5,8 @@ import com.thingplanner.backend.dto.response.EventResponse;
 import com.thingplanner.backend.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/event")
 public class EventController {
@@ -17,12 +19,12 @@ public class EventController {
 
     @PostMapping("/create")
     public EventResponse createEvent(@RequestBody EventRequest request) {
-        return (EventResponse) eventService.create(request);
+        return eventService.create(request);
     }
 
     @PostMapping("/get")
-    public EventResponse getEvent(@RequestBody EventRequest request) {
-        return (EventResponse) eventService.findByFields(request);
+    public List<EventResponse> getEvent(@RequestBody EventRequest request) {
+        return eventService.findByFields(request);
     }
 
 
