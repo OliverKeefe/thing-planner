@@ -32,5 +32,8 @@ public class EventController {
         return eventService.updateEvent(request);
     }
 
-
+    @PostMapping("/delete")
+    public EventResponse deleteEvent(@RequestBody EventRequest request) {
+        return eventService.deleteEvent(request);
+    }
 }
