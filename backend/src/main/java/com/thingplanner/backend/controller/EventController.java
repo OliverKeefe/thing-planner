@@ -27,6 +27,10 @@ public class EventController {
         return eventService.findByFields(request);
     }
 
+    @PostMapping("/update")
+    public EventResponse updateEvent(@RequestBody EventRequest request) {
+        return eventService.updateEvent(request);
+    }
 
 
 }
