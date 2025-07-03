@@ -87,4 +87,22 @@ public class EventServiceTest {
 
         verify(eventRepository, never()).save(any(EventEntity.class));
     }
+
+    @Test
+    void testGetEvent() {
+        EventRequest request = testRequest();
+        EventEntity eventEntity = new EventEntity();
+        EventResponse expectedResponse = new EventResponse();
+
+        eventEntity.setEventName(eventName);
+        expectedResponse.setEventName(eventName);
+
+        when(eventRepository.findAll(any(Specification.class))).thenReturn(List.of(eventEntity));
+        when(eventMapper.toResponse(eventEntity)).thenReturn(expectedResponse);
+
+        List<EventResponse> actualResponse = eventService.findByFields(request);
+
+        assertEquals(1, actualResponse.size());
+        assertEquals(expectedResponse.getEventName(), actualResponse.getFirst().getEventName());
+    }
 }
