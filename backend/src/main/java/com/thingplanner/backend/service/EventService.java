@@ -54,4 +54,20 @@ public class EventService {
             throw new RuntimeException("Could not find event with id" + request.getEventId(), e);
         }
     }
+
+    public EventResponse update(EventRequest request) {
+        EventEntity updatedEventEntity = eventMapper.toEntity(request);
+
+        try {
+            EventEntity eventEntity = eventRepository.findById(updatedEventEntity.getId())
+                    .orElseThrow(() -> new RuntimeException(("Event not found with id: " + updatedEventEntity.getId())));
+
+            eventRepository.save(eventMapper.toUpdatedEntity(eventEntity, updatedEventEntity));
+
+            return eventMapper.toResponse(updatedEventEntity);
+        } catch (Exception e) {
+            throw new RuntimeException("Couldn't update event: " + updatedEventEntity.getEventName(), e);
+        }
+    }
+
 }
