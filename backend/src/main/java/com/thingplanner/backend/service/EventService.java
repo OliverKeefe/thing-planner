@@ -44,4 +44,14 @@ public class EventService {
                 .map(eventMapper::toResponse)
                 .toList();
     }
+
+    public List<EventResponse> findById(EventRequest request) {
+        try {
+            return eventRepository.findById(request.getEventId()).stream()
+                    .map(eventMapper::toResponse)
+                    .toList();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not find event with id" + request.getEventId(), e);
+        }
+    }
 }
