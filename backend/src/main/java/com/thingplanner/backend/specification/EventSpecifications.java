@@ -2,7 +2,6 @@ package com.thingplanner.backend.specification;
 
 import com.thingplanner.backend.dto.request.EventRequest;
 import com.thingplanner.backend.entity.EventEntity;
-import jakarta.persistence.criteria.Join;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import jakarta.persistence.criteria.Predicate;
 
 
 public class EventSpecifications {
-    public static Specification<EventEntity> withDynamicFields(EventRequest request) {
+    public static Specification<EventEntity> eventSpecification(EventRequest request) {
         return (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
