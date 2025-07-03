@@ -40,7 +40,7 @@ public class EventService {
     }
 
     public List<EventResponse> findByFields(EventRequest request) {
-        return eventRepository.findAll(withDynamicFields(request)).stream()
+        return eventRepository.findAll(eventSpecification(request)).stream()
                 .map(eventMapper::toResponse)
                 .toList();
     }
