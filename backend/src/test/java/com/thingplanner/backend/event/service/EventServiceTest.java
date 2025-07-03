@@ -7,22 +7,20 @@ import com.thingplanner.backend.entity.EventEntity;
 import com.thingplanner.backend.mapper.EventMapper;
 import com.thingplanner.backend.repository.EventRepository;
 import com.thingplanner.backend.service.EventService;
-import jdk.jfr.Event;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
+@SuppressWarnings("unchecked")
 public class EventServiceTest {
 
     @Mock
@@ -34,6 +32,7 @@ public class EventServiceTest {
     @InjectMocks
     private EventService eventService;
 
+    private static final String eventName = "Italian Group Holiday 2025";
 
     private EventRequest testRequest() {
         EventRequest eventRequest = new EventRequest();
@@ -42,7 +41,7 @@ public class EventServiceTest {
         eventTypeRequest.setEventTypeName("Holiday");
         eventTypeRequest.setId(1L);
 
-        eventRequest.setEventName("Italian Group Holiday 2025");
+        eventRequest.setEventName(eventName);
         eventRequest.setStartDate("2025-07-02T14:30:00");
         eventRequest.setEndDate("2025-07-14T14:30:00");
         eventRequest.setEventType(eventTypeRequest);
@@ -56,10 +55,10 @@ public class EventServiceTest {
         EventEntity eventEntity = new EventEntity();
         EventResponse expectedResponse = new EventResponse();
 
-        eventEntity.setEventName("Italian Group Holiday 2025");
-        expectedResponse.setEventName("Italian Group Holiday 2025");
+        eventEntity.setEventName(eventName);
+        expectedResponse.setEventName(eventName);
 
-        when(eventRepository.findAll(any(Specification.class))).thenReturn(Collections.emptyList());
+        when(eventRepository.exists(any(Specification.class))).thenReturn(false);
         when(eventMapper.toEntity(request)).thenReturn(eventEntity);
         when(eventMapper.toResponse(eventEntity)).thenReturn(expectedResponse);
 
@@ -72,19 +71,14 @@ public class EventServiceTest {
     @Test
     void testCreateEventAlreadyExists() {
         EventRequest request = testRequest();
-        EventEntity existingEvent = new EventEntity();
-        EventResponse response = new EventResponse();
 
-        existingEvent.setEventName(request.getEventName());
-
-        when(eventRepository.findAll(any(Specification.class))).thenReturn(List.of(existingEvent));
+        when(eventRepository.exists(any(Specification.class))).thenReturn(true);
 
         RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> {
             eventService.create(request);
         });
 
         assertEquals("Event already exists.", runtimeException.getMessage());
-
         verify(eventRepository, never()).save(any(EventEntity.class));
     }
 
