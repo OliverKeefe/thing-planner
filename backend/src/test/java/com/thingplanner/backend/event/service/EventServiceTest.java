@@ -105,4 +105,23 @@ public class EventServiceTest {
         assertEquals(1, actualResponse.size());
         assertEquals(expectedResponse.getEventName(), actualResponse.getFirst().getEventName());
     }
+
+    @Test
+    void testUpdateEvent() {
+        EventRequest request = testRequest();
+        EventEntity eventEntity = new EventEntity();
+        EventResponse expectedResponse = new EventResponse();
+
+        eventEntity.setEventName("French Group Holiday 2026");
+        expectedResponse.setEventName("French Group Holiday 2026");
+
+        when(eventMapper.toEntity(request)).thenReturn(eventEntity);
+        when(eventMapper.toResponse(eventEntity)).thenReturn(expectedResponse);
+
+        EventResponse actualResponse = eventService.update(request);
+
+        assertEquals(expectedResponse.getEventName(), actualResponse.getEventName());
+        verify(eventMapper).toEntity(request);
+        verify(eventMapper).toResponse(eventEntity);
+    }
 }
