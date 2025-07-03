@@ -3,7 +3,9 @@ package com.thingplanner.backend.controller;
 import com.thingplanner.backend.dto.request.EventRequest;
 import com.thingplanner.backend.dto.response.EventResponse;
 import com.thingplanner.backend.service.EventService;
+import org.apache.coyote.Response;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -28,8 +30,8 @@ public class EventController {
     }
 
     @PostMapping("/update")
-    public EventResponse updateEvent(@RequestBody EventRequest request) {
-        return eventService.updateEvent(request);
+    public ResponseEntity<EventResponse> updateEvent(@RequestBody EventRequest request) {
+        return ResponseEntity.ok(eventService.update(request));
     }
 
     @PostMapping("/delete")

@@ -55,6 +55,10 @@ public class EventService {
         }
     }
 
+    public List<EventResponse> search(EventRequest request) {
+        throw new NotImplemented
+    }
+
     public EventResponse update(EventRequest request) {
         EventEntity updatedEventEntity = eventMapper.toEntity(request);
 
@@ -70,4 +74,8 @@ public class EventService {
         }
     }
 
+    //TODO: Implement deleteEvent.
+    public EventResponse delete(EventRequest request) {
+        return eventMapper.toResponse(eventMapper.toEntity(request));
+    }
 }
