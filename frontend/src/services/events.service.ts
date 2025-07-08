@@ -24,10 +24,16 @@ interface EventResponse {
 }
 
 export const EventsService = {
-    createEvent: (payload: CreateEventPayload) => {
-        return handleRequest<CreateEventPayload, EventResponse>(
+    createEvent: (payload: {
+        id: null;
+        name: string;
+        eventType: EventTypePayload;
+        startDate: string | undefined;
+        endDate: string | undefined;
+    }) => {
+        return handleRequest<EventPayload, EventResponse>(
             payload,
-            "/api/events",
+            `${API_URL}/event/create`,
             "POST"
         );
     },
