@@ -1,29 +1,27 @@
 package com.thingplanner.backend.dto.request;
 
-import java.util.List;
-
 public class EventRequest {
-    private Long eventId;
-    private String eventName;
+    private Long id;
+    private String name;
     private EventTypeRequest eventType;
     private String startDate;
     private String endDate;
    // private List<String> attendeeEmails;
 
-    public Long getEventId() {
-        return eventId;
+    public Long getId() {
+        return id;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getEventName() {
-        return eventName;
+    public String getName() {
+        return name;
     }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public EventTypeRequest getEventType() {
