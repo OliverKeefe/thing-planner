@@ -41,7 +41,7 @@ public class EventServiceTest {
         eventTypeRequest.setEventTypeName("Holiday");
         eventTypeRequest.setId(1L);
 
-        eventRequest.setEventName(eventName);
+        eventRequest.setName(eventName);
         eventRequest.setStartDate("2025-07-02T14:30:00");
         eventRequest.setEndDate("2025-07-14T14:30:00");
         eventRequest.setEventType(eventTypeRequest);
