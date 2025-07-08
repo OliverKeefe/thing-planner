@@ -5,7 +5,6 @@ import com.thingplanner.backend.dto.response.EventResponse;
 import com.thingplanner.backend.entity.EventEntity;
 import com.thingplanner.backend.entity.EventTypeEntity;
 import org.springframework.stereotype.Component;
-import com.thingplanner.backend.entity.EventTypeEntity;
 
 @Component
 public class EventMapper {
@@ -20,8 +19,8 @@ public class EventMapper {
         EventEntity entity = new EventEntity();
         EventTypeEntity eventType = eventTypeMapper.toEntity(request.getEventType());
 
-        if (request.getEventId() != null) entity.setId(request.getEventId());
-        entity.setEventName(request.getEventName());
+        if (request.getId() != null) entity.setId(request.getId());
+        entity.setEventName(request.getName());
         //entity.setDescription(dto.getDescription());
         entity.setStartDate(request.getStartDate());
         entity.setEndDate(request.getEndDate());
