@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/event")
+@CrossOrigin(origins = "http://localhost:5173")
 public class EventController {
 
     private final EventService eventService;
@@ -36,6 +37,6 @@ public class EventController {
 
     @PostMapping("/delete")
     public EventResponse deleteEvent(@RequestBody EventRequest request) {
-        return eventService.deleteEvent(request);
+        return eventService.delete(request);
     }
 }
