@@ -1,15 +1,20 @@
 import { handleRequest } from "@/services/httpClient";
 const API_URL = import.meta.env.VITE_API_URL;
 
-interface CreateEventPayload {
 console.log(API_URL);
+
+interface EventTypePayload {
+    id: number;
+    eventTypeName: string;
+}
+
+interface EventPayload {
+    id: number | null;
     name: string;
-    description?: string;
-    startDate: string;
-    endDate?: string;
-    startTime?: string;
-    endTime?: string;
-    invitedEmails: string[];
+    eventType: EventTypePayload;
+    startDate: string | undefined;
+    endDate?: string | undefined;
+    // invitedEmails?: string[];
 }
 
 interface EventResponse {
