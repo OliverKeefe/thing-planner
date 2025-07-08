@@ -4,15 +4,12 @@ import com.thingplanner.backend.dto.request.EventRequest;
 import com.thingplanner.backend.dto.response.EventResponse;
 import com.thingplanner.backend.entity.EventEntity;
 import com.thingplanner.backend.mapper.EventMapper;
-import com.thingplanner.backend.mapper.EventTypeMapper;
 import com.thingplanner.backend.repository.EventRepository;
-import org.apache.coyote.Response;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-import static com.thingplanner.backend.specification.EventSpecifications.withDynamicFields;
+import static com.thingplanner.backend.specification.EventSpecifications.eventSpecification;
 
 @Service
 public class EventService {
@@ -26,9 +23,13 @@ public class EventService {
     }
 
     public EventResponse create(EventRequest request) {
-        if (findByFields(request).isEmpty()) {
+        EventEntity eventEntity = eventMapper.toEntity(request);
+
+        boolean alreadyExists = eventRepository.exists(eventSpecification(request));
+
+        if (!alreadyExists) {
             try {
-                EventEntity eventEntity = eventMapper.toEntity(request);
+                request.setId(null);
                 eventRepository.save(eventEntity);
                 return eventMapper.toResponse(eventEntity);
             } catch (Exception e) {
@@ -47,16 +48,16 @@ public class EventService {
 
     public List<EventResponse> findById(EventRequest request) {
         try {
-            return eventRepository.findById(request.getEventId()).stream()
+            return eventRepository.findById(request.getId()).stream()
                     .map(eventMapper::toResponse)
                     .toList();
         } catch (Exception e) {
-            throw new RuntimeException("Could not find event with id" + request.getEventId(), e);
+            throw new RuntimeException("Could not find event with id" + request.getId(), e);
         }
     }
 
-    public List<EventResponse> search(EventRequest request) {
-        throw new NotImplemented
+    public List<EventResponse> search(EventRequest request) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     public EventResponse update(EventRequest request) {
@@ -76,6 +77,17 @@ public class EventService {
 
     //TODO: Implement deleteEvent.
     public EventResponse delete(EventRequest request) {
-        return eventMapper.toResponse(eventMapper.toEntity(request));
+        EventEntity entityToDelete = eventMapper.toEntity(request);
+
+        if (eventRepository.existsById(request.getId())) {
+            try {
+                eventRepository.delete(entityToDelete);
+                return eventMapper.toResponse(entityToDelete);
+            } catch (Exception e) {
+                throw new RuntimeException(("Couldn't delete event: " + entityToDelete.getEventName() + e));
+            }
+        } else {
+            throw new RuntimeException("Couldn't delete event " + entityToDelete.getEventName() + ", because it doesn't exist.");
+        }
     }
 }
