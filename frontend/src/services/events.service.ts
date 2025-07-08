@@ -1,6 +1,8 @@
 import { handleRequest } from "@/services/httpClient";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface CreateEventPayload {
+console.log(API_URL);
     name: string;
     description?: string;
     startDate: string;
