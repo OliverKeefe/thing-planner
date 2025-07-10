@@ -59,7 +59,7 @@ export const CreateEvent: React.FC<CreateEventProps> = ({ children }) => {
     };
 
     return (
-        <Container>
+        <Container className="w-[650px]">
             <Card>
                 <CardHeader>
                     <CardTitle>📆 Create Event</CardTitle>
