@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
