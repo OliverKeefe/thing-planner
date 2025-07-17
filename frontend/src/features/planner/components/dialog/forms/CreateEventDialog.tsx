@@ -6,14 +6,14 @@ import {
     DialogHeader,
     DialogTitle,
     DialogDescription,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import EventTypeSelector from "@/features/planner/components/checkboxes/EventTypeSelector";
-import { DateTimePicker } from "@/components/shared/datetime/calendars/DateTimePicker";
-import { EmailInviteInput } from "@/components/shared/Input/EmailInviteInput";
-import { EventsService } from "@/services/events.service";
+} from "@/components/ui/dialog.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { Label } from "@/components/ui/label.tsx";
+import EventTypeSelector from "@/features/planner/components/checkboxes/EventTypeSelector.tsx";
+import { DateTimePicker } from "@/components/shared/datetime/calendars/DateTimePicker.tsx";
+import { EmailInviteInput } from "@/components/shared/Input/EmailInviteInput.tsx";
+import { EventsService } from "@/services/events.service.ts";
 
 interface DateTimeRange {
     from: Date | undefined;
@@ -58,7 +58,7 @@ export const CreateEventDialog: React.FC = () => {
     return (
         <Dialog open={open} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-                <Button>Create New Event</Button>
+                <Button variant="ghost" className="w-full justify-start">+ Create New Event</Button>
             </DialogTrigger>
 
             <DialogContent className="max-w-3xl">
