@@ -1,15 +1,14 @@
-import { useState } from 'react'
 import './App.css'
 import './index.css'
-import { CreateEvent } from "@/features/planner/components/forms/CreateEvent.tsx";
 import Layout from "@/components/shared/layout/layout.tsx"
+import {EventCard} from "@/features/planner/components/cards/EventCard.tsx";
 
 function App() {
 
   return (
     <>
         <Layout>
-            <CreateEvent />
+            <EventCard />
         </Layout>
     </>
   )
