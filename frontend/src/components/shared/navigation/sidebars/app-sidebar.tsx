@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/sidebar"
 import CreateEventDialog from "@/features/planner/components/dialog/forms/CreateEventDialog.tsx";
 import AppTopbar from "@/components/shared/navigation/sidebars/app-topbar.tsx";
-import { SearchDialog } from "@/features/search/components/dialog/search-dialog.tsx";
+import { SearchCommand } from "@/features/search/components/command/search-command.tsx";
 
 export function AppSidebar() {
     return (
@@ -20,7 +20,7 @@ export function AppSidebar() {
                     <SidebarContent>
                         <SidebarGroupLabel>Application</SidebarGroupLabel>
                         <CreateEventDialog />
-                        <SearchDialog />
+                        <SearchCommand />
 
                         <SidebarGroupLabel>Events</SidebarGroupLabel>
 
