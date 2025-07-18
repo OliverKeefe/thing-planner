@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar.tsx"
 import { AppSidebar } from "@/components/shared/navigation/sidebars/app-sidebar"
+import AppTopbar from "@/components/shared/navigation/sidebars/app-topbar.tsx";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
@@ -8,6 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <main className={"flex-1"}>
                 <SidebarTrigger />
                 {children}
+
             </main>
         </SidebarProvider>
     )
